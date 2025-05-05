@@ -255,3 +255,60 @@ Allows users to save and organize preferred properties for future reference. Ena
 - Automated dependency vulnerability scanning
 - Comprehensive activity logging for all sensitive operations
 - IP-based anomaly detection for suspicious behavior
+
+# CI/CD Pipeline
+
+## What is CI/CD?
+Continuous Integration (CI) and Continuous Deployment (CD) are automated processes that enable frequent, reliable code changes. CI handles automatic building and testing of code changes, while CD automates the deployment of validated changes to production environments. For our Airbnb clone, this ensures rapid yet stable delivery of new features and fixes.
+
+## Why It's Important
+1. **Quality Assurance**: Catches bugs early with automated testing
+2. **Faster Releases**: Enables multiple daily deployments safely
+3. **Consistency**: Eliminates "it works on my machine" problems
+4. **Rollback Capability**: Quickly revert problematic deployments
+5. **Team Efficiency**: Frees developers from manual deployment tasks
+
+## Our Pipeline Stages
+
+### 1. Code Commit & Push
+- Trigger: Developers push to feature branches
+- Tools: Git version control
+
+### 2. Continuous Integration (CI)
+- **Linting**: Code style validation (Flake8 for Python)
+- **Unit Testing**: Fast isolated component tests (pytest)
+- **Integration Testing**: API and database interaction tests
+- **Security Scanning**: Vulnerability checks (Bandit, Snyk)
+- Tools: GitHub Actions, pytest, Docker
+
+### 3. Build & Package
+- Create Docker images for all services
+- Version and tag artifacts
+- Store in container registry
+- Tools: Docker, Docker Compose, AWS ECR/GitHub Packages
+
+### 4. Staging Deployment
+- Deploy to staging environment
+- Run smoke tests
+- Manual QA approval
+- Tools: AWS ECS/Kubernetes, Terraform
+
+### 5. Production Deployment
+- Blue-green deployment strategy
+- Health checks and monitoring
+- Automatic rollback on failure
+- Tools: AWS CodeDeploy, Prometheus, Grafana
+
+## Key Tools in Our Stack
+- **GitHub Actions**: Primary CI/CD orchestration
+- **Docker**: Containerization for consistent environments
+- **Terraform**: Infrastructure as Code for deployments
+- **AWS Services**: ECR (container registry), ECS (orchestration)
+- **Monitoring**: Prometheus (metrics), Sentry (errors)
+
+## Pipeline Benefits for Airbnb Clone
+- Ensures booking/payment systems are always stable
+- Allows rapid iteration on search/review features
+- Maintains security across frequent updates
+- Enables A/B testing of new UX improvements
+- Provides audit trail for all changes
