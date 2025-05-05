@@ -171,3 +171,35 @@
 
 **Relationships**:
 - Many-to-One with Properties (Multiple images per property)
+
+# Feature Breakdown
+
+## 1. User Management System
+Handles all user-related operations including registration, authentication, and profile management. Enables users to sign up as guests or hosts, with secure password handling and account verification. Forms the foundation for all user interactions within the platform.
+
+## 2. Property Management
+Allows hosts to create, update, and manage property listings with photos, descriptions, and amenities. Includes location services for mapping and search functionality. Serves as the core inventory system for available accommodations.
+
+## 3. Booking System
+Manages the complete reservation lifecycle from availability checks to confirmation. Handles date conflicts, pricing calculations, and cancellation policies. Connects guests with properties while ensuring booking integrity.
+
+## 4. Payment Processing
+Secure payment gateway integration for handling transactions between guests and hosts. Processes deposits, refunds, and host payouts with transaction records. Ensures financial security and compliance with payment standards.
+
+## 5. Review & Rating System
+Double-blind review system where both guests and hosts can leave feedback after stays. Includes star ratings and written reviews with moderation capabilities. Builds trust within the community through transparent evaluations.
+
+## 6. Search & Discovery
+Advanced property search with filters for location, price, amenities, and availability. Features sorting and recommendation algorithms. Helps guests find ideal accommodations quickly and efficiently.
+
+## 7. Messaging System
+Real-time communication between guests and hosts for booking inquiries and coordination. Includes notification system for new messages. Facilitates smooth information exchange before and during stays.
+
+## 8. Admin Dashboard
+Comprehensive management interface for platform administrators. Includes user moderation, content approval, and analytics reporting. Maintains platform quality and provides business insights.
+
+## 9. Notification System
+Automated alerts for booking confirmations, messages, and payment receipts. Configurable email and in-app notifications. Keeps users informed about important platform activities.
+
+## 10. Wishlists & Favorites
+Allows users to save and organize preferred properties for future reference. Enables sharing wishlists with travel companions. Enhances user experience through personalized collections.
