@@ -95,3 +95,79 @@
 - **Git**: Distributed version control system
 - **GitHub Actions**: CI/CD platform for automated testing and deployment
 - **AWS/GCP**: Cloud platforms for hosting production infrastructure
+
+# Database Design
+
+## 1. Users
+- `id` (Primary Key)
+- `email` (Unique)
+- `password_hash` (Securely encrypted)
+- `first_name` & `last_name`
+- `user_type` (guest/host/admin)
+
+**Relationships**:
+- One-to-Many with Properties (A user can list multiple properties as a host)
+- One-to-Many with Bookings (A user can make multiple bookings as a guest)
+- One-to-Many with Reviews (A user can write multiple reviews)
+
+## 2. Properties
+- `id` (Primary Key)
+- `title` (Listing title)
+- `description` 
+- `price_per_night` (Decimal)
+- `host_id` (Foreign Key to Users)
+- `property_type` (apartment/house/villa/etc.)
+- `amenities` (Array of available amenities)
+
+**Relationships**:
+- Many-to-One with Users (Each property belongs to one host)
+- One-to-Many with Bookings (A property can have multiple bookings)
+- One-to-Many with Reviews (A property can receive multiple reviews)
+- One-to-Many with PropertyImages (A property can have multiple images)
+
+## 3. Bookings
+- `id` (Primary Key)
+- `property_id` (Foreign Key to Properties)
+- `guest_id` (Foreign Key to Users)
+- `check_in_date` & `check_out_date`
+- `total_price` (Calculated from nights × price)
+- `status` (confirmed/pending/cancelled)
+
+**Relationships**:
+- Many-to-One with Users (Each booking belongs to one guest)
+- Many-to-One with Properties (Each booking is for one property)
+- One-to-One with Payments (Each booking has one payment record)
+
+## 4. Reviews
+- `id` (Primary Key)
+- `property_id` (Foreign Key to Properties)
+- `author_id` (Foreign Key to Users)
+- `rating` (1-5 scale)
+- `comment` (Text content)
+- `created_at` (Timestamp)
+
+**Relationships**:
+- Many-to-One with Users (Each review is written by one user)
+- Many-to-One with Properties (Each review is for one property)
+- (Optional) One-to-One with Bookings (Review can be tied to specific booking)
+
+## 5. Payments
+- `id` (Primary Key)
+- `booking_id` (Foreign Key to Bookings)
+- `amount` (Decimal)
+- `payment_method` (credit card/PayPal/etc.)
+- `transaction_id` (From payment processor)
+- `status` (succeeded/failed/refunded)
+
+**Relationships**:
+- One-to-One with Bookings (Each payment processes one booking)
+- Many-to-One with Users (Payment is charged to one user's account)
+
+## 6. PropertyImages (Additional Entity)
+- `id` (Primary Key)
+- `property_id` (Foreign Key to Properties)
+- `image_url` (Cloud storage link)
+- `is_primary` (Boolean for featured image)
+
+**Relationships**:
+- Many-to-One with Properties (Multiple images per property)
