@@ -203,3 +203,55 @@ Automated alerts for booking confirmations, messages, and payment receipts. Conf
 
 ## 10. Wishlists & Favorites
 Allows users to save and organize preferred properties for future reference. Enables sharing wishlists with travel companions. Enhances user experience through personalized collections.
+
+# API Security
+
+## Core Security Measures
+
+### 1. Authentication
+**Implementation**: JWT (JSON Web Tokens) with OAuth 2.0 support  
+**Importance**: Ensures only verified users can access protected endpoints. Critical for preventing unauthorized access to user accounts and sensitive operations like bookings and payments.
+
+### 2. Authorization
+**Implementation**: Role-based access control (RBAC) with permissions  
+**Importance**: Restricts actions based on user roles (guest/host/admin). Prevents hosts from modifying others' properties or guests from altering bookings they don't own.
+
+### 3. Rate Limiting
+**Implementation**: Redis-backed request throttling  
+**Importance**: Protects against brute force attacks and API abuse. Especially crucial for authentication endpoints and payment processing to prevent fraudulent activities.
+
+### 4. Data Encryption
+**Implementation**: TLS 1.3 for transit, AES-256 for sensitive data at rest  
+**Importance**: Essential for protecting payment details, personal information, and authentication credentials from interception or database breaches.
+
+### 5. Input Validation
+**Implementation**: Strict schema validation for all API requests  
+**Importance**: Prevents SQL injection and XSS attacks. Critical for all user-generated content like property descriptions and reviews.
+
+## Security-Critical Areas
+
+### User Management
+**Protections**: Password hashing (bcrypt), email verification, session management  
+**Why**: Compromised user accounts can lead to fraudulent bookings, payment theft, and reputation damage to the platform.
+
+### Payment Processing
+**Protections**: PCI-DSS compliance, tokenization, audit logging  
+**Why**: Direct financial impact - security breaches can lead to monetary losses and legal consequences.
+
+### Property Management
+**Protections**: Ownership verification, image upload scanning  
+**Why**: Prevents fraudulent listings and malicious content that could harm users or the platform's reputation.
+
+### Booking System
+**Protections**: Conflict validation, anti-sniping mechanisms  
+**Why**: Prevents reservation manipulation that could lead to double bookings or financial losses.
+
+### Admin Operations
+**Protections**: Multi-factor authentication, IP whitelisting  
+**Why**: Admin breaches could compromise the entire platform's data and operations.
+
+## Additional Security Layers
+- Regular security audits and penetration testing
+- Automated dependency vulnerability scanning
+- Comprehensive activity logging for all sensitive operations
+- IP-based anomaly detection for suspicious behavior
