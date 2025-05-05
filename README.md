@@ -12,3 +12,9 @@ Automates deployments using CI/CD tools. Manages cloud infrastructure and monito
 
 QA Engineer
 Tests APIs and edge cases. Automates integration/load testing. Checks security and prevents breaking changes.
+
+Security Specialist
+Conducts vulnerability assessments. Implements encryption, auth protocols, and compliance measures.
+
+Data Analyst (Optional)
+Processes analytics for user behavior. Generates insights to improve business decisions.
